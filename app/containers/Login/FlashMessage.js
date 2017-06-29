@@ -18,7 +18,9 @@ class FlashMessage extends React.Component {
              //   <button  className='close'><span>&times;</span></button>
 
     render() {
-        const { id, type, text } = this.props.message;
+        const id = this.props.message.id;
+        const type = this.props.message.type;
+        const text = this.props.message.text;
         return (
             <div>
                 {text}

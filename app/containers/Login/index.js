@@ -87,10 +87,10 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
                         type: 'success',
                         text: "huhu erfolgreich eingeloggt"
                     }));
-                    dispatch(addFlashMessage({
-                        type: 'error',
-                        text: "Falsch eingeloggt"
-                    }));
+                    // dispatch(addFlashMessage({
+                    //     type: 'error',
+                    //     text: "Falsch eingeloggt"
+                    // }));
                     //redirect
                     //browserHistory.push('/features');
                 } else {
@@ -186,11 +186,11 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
 
 const makeSelectUser = () => createSelector(
     (state) => {
-        console.log('1', state)
+        //console.log('1', state)
         return state.get('login');
     },
     (state) => {
-        console.log('2', state)
+        //console.log('2', state)
         return state.get('user');
     }
 );

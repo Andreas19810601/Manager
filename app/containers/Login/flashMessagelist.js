@@ -15,7 +15,10 @@ import { createSelector, createStructuredSelector } from 'reselect';
 class FlashMessageList extends React.Component {
     
     render() {
-        const message = this.props.message.map(message => <FlashMessage key={this.props.message.id} message={this.props.message} />);
+        console.log(this.props.message);
+        console.log(this.props.message.id);
+        // const message = this.props.message.map(message => <FlashMessage key={this.props.message.id} message={this.props.message.text} />);
+        const message = <FlashMessage key={this.props.message.id} message={this.props.message.text} />;
         return (
             <div>
                 {message}
@@ -28,6 +31,11 @@ const makeSelectMessage = () => createSelector(
     (state) => state.get('login'),
     (state) => state.get('message')
 );
+
+(state) => {
+        //console.log('2', state)
+        return state.get('user');
+    }
 
 const mapStateToProps = createStructuredSelector({
     message: makeSelectMessage()
