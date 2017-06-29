@@ -16,14 +16,13 @@ export default function loginReducer(state = initialState, action) {
             return state
                 .set('user', action.user);
         case ADD_FLASH_MESSAGE:
-            let newArray = state.slice();
-            return newArray.set(newArray.message.splice(newArray, 0, ('message',[
+            return state.set('message',[
                 fromJS({
                     id: shortid.generate(),
                     type: action.message.type,
                     text: action.message.text,
                 })
-           ]) ))
+           ])
 
         
         case DELETE_FLASH_MESSSAGE:
