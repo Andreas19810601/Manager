@@ -1,12 +1,16 @@
 import React from 'react';
-import classnames from 'classname';
+import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 
 class FlashMessage extends React.Component {
     constructor(props) {
         super(props);
-        //this.onClick = this.onClick.bind(this);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onClick(){
+        this.props.deleteFlashMessage(this.props.message.id);
     }
 
     // onClick() {
@@ -22,7 +26,11 @@ class FlashMessage extends React.Component {
         const type = this.props.message.type;
         const text = this.props.message.text;
         return (
-            <div>
+            <div className={classnames('alert',{
+                'alert-success': type === 'success',
+                'alert-danger': type === 'error'
+            })}>
+                <button onClick={this.onClick} className='close'><span>&times;</span></button>
                 {text}
             </div>
         );

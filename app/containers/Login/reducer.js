@@ -26,14 +26,19 @@ export default function loginReducer(state = initialState, action) {
 
         
         case DELETE_FLASH_MESSSAGE:
-            const index = findIndex(state, { id: action.id });
-            if (index >= 0) {
-                return [
-                    ...state.slice(o, index),
-                    ...state.slice(index + 1)
-                ];
-            }
-            return state;
+                return state
+                .set('message',
+                ({	
+                     
+                })
+                )
+            // const index = findIndex(state, { id: action.id });
+            // if (index >= 0) {
+            //     return [
+            //         ...state.slice(o, index),
+            //         ...state.slice(index + 1)
+            //     ];
+            // }
         default:
             return state;
     }

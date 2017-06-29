@@ -1,7 +1,7 @@
 import React from 'react';
 import FlashMessage from './FlashMessage';
 import { connect } from 'react-redux'
-import deleteFlashMessage from './FlashMessage'
+import {deleteFlashMessage} from './actions'
 import { createSelector, createStructuredSelector } from 'reselect';
 
 
@@ -15,10 +15,8 @@ import { createSelector, createStructuredSelector } from 'reselect';
 class FlashMessageList extends React.Component {
     
     render() {
-        console.log(this.props.message);
-        console.log(this.props.message.id);
         // const message = this.props.message.map(message => <FlashMessage key={this.props.message.id} message={this.props.message.text} />);
-        const message = <FlashMessage key={this.props.message.id} message={this.props.message.text} />;
+        const message = <FlashMessage key={this.props.message.id} message={this.props.message.text} deleteFlashMessage={deleteFlashMessage} />;
         return (
             <div>
                 {message}
@@ -41,4 +39,4 @@ const mapStateToProps = createStructuredSelector({
     message: makeSelectMessage()
 });
 
-export default connect(mapStateToProps)(FlashMessageList);
+export default connect(mapStateToProps, {deleteFlashMessage})(FlashMessageList);
