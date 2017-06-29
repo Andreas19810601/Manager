@@ -15,16 +15,21 @@ import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
 import { Col } from 'react-bootstrap';
 import { createSelector, createStructuredSelector } from 'reselect';
+import FlashMessageList from 'containers/Login/flashMessagelist';
 //import { addFlashMessages } from './actions';
 
 class FeaturePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   constructor(props) {
+    
         super(props)
+        
         this.state = {
             message: "Hallo hier ist der erste text"
         };
+        
     }
+    
 
   // Since state and props are static,
   // there's no need to re-render this component
@@ -32,8 +37,8 @@ class FeaturePage extends React.Component { // eslint-disable-line react/prefer-
     return false;
   }
   render() {
+    
     return (
-      
       <div>
         <Helmet
           title="Feature Page"
@@ -215,6 +220,26 @@ class FeaturePage extends React.Component { // eslint-disable-line react/prefer-
           <Col xs={10} md={8} >
             <form>
                 <textarea type='text' className="form-control" id="usr" />
+            </form>
+          </Col>
+          <Col xs={4} md={2}>
+            <form className='center' >
+              
+            </form>
+          </Col>
+          <Col xs={4} md={2} >
+            <style>{"\
+                .center{\
+                  text-align: center;\
+                  color: white;\
+                }\
+              "}</style>
+            <form className='center' >
+            </form>
+          </Col>
+          <Col xs={10} md={8} >
+            <form>
+                <FlashMessageList />
             </form>
           </Col>
           <Col xs={4} md={2}>
