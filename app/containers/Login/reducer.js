@@ -29,7 +29,9 @@ export default function loginReducer(state = initialState, action) {
                 return state
                 .set('message',
                 ({	
-                     
+                     id: '0',
+                     type: 'error',
+                     text: 'hier',
                 })
                 )
             // const index = findIndex(state, { id: action.id });

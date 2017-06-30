@@ -254,9 +254,22 @@ class FeaturePage extends React.Component { // eslint-disable-line react/prefer-
 }
 
 const makeSelectUser = () => createSelector(
-  (state) => state.get('login'),
-  (state) => state.get('user')
+  (state) => {
+    console.log('1',state)
+    return state.get('login')},
+  (state) => {
+    console.log('2',state)
+    return state.get('user')},
 );
+
+// const makeSelectorFlashMessage = () => createSelector(
+//   (state) => {
+//     console.log('3',state)
+//     return state.get('login')},
+//   (state) => {
+//     console.log('4',state)
+//     return state.get('message')},
+// );
 
 // const makeSelectorFlashMessage = () => createSelector(
 //   (state) => state.get('flashMessage')
@@ -264,6 +277,7 @@ const makeSelectUser = () => createSelector(
 
 const mapStateToProps = createStructuredSelector({
   user: makeSelectUser(),
+  //message: makeSelectorFlashMessage(),
   //flashMassage : makeSelectorFlashMessage()
 });
 

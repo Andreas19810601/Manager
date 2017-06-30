@@ -14,7 +14,6 @@ import { connect } from 'react-redux'
 import { setUser, addFlashMessage } from './actions'
 import { createSelector, createStructuredSelector } from 'reselect';
 import FlashMessageList from './flashMessagelist';
-//import {reducers} from 'components/Chattername';
 
 /*
 requestJsonPost('/api/user').then(
@@ -85,14 +84,14 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
                     dispatch(setUser(res.user));
                     dispatch(addFlashMessage({
                         type: 'success',
-                        text: "huhu erfolgreich eingeloggt"
+                        text: "Neue Nachricht: Willkommen im Manager"
                     }));
                     // dispatch(addFlashMessage({
                     //     type: 'error',
                     //     text: "Falsch eingeloggt"
                     // }));
                     //redirect
-                    //browserHistory.push('/features');
+                    browserHistory.push('/features');
                 } else {
 
                     console.log("If ist falsch")
@@ -101,31 +100,6 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
 
     }
 
-
-
-
-
-    /* 
-        getData = () => {
-        console.log(1);
-        fetch('/api/login', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: this.state.username, password: this.state.password
-            })
-        })
-        .then(function (res) { return res.text(); }).then(function (res) { console.log(res) })
-
-    }
-
-
-    requestJsonPost('/api/login', this.state.username, this.state.password)
-    */
-
-
     updateWrittenText(text) {
         let arr = this.state.writtenText;
         arr.push(text);
@@ -133,11 +107,7 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
         this.setState({ infotext: '' })
     }
 
-    // Since state and props are static,
-    // there's no need to re-render this component
-    //  shouldComponentUpdate() {
-    //    return false;
-    // }
+
 
     render() {
         return (
@@ -171,8 +141,8 @@ class Login extends React.Component { // eslint-disable-line react/prefer-statel
                     {this.props.user && <div>
                         <span>Benutzer:</span> {this.props.user.displayName}
                     </div>}
-                    <FlashMessageList />
                 </form>
+                {/*<FlashMessageList />*/}
             </div>
         );
     }
@@ -195,8 +165,18 @@ const makeSelectUser = () => createSelector(
     }
 );
 
+const makeSelectorFlashMessage = () => createSelector(
+    (state) => { 
+        //console.log('1',state)
+        return state.get('login') },
+    (state) => { 
+        //console.log('2',state)
+        return state.get('message') },
+);
+
 const mapStateToProps = createStructuredSelector({
-    user: makeSelectUser()
+    user: makeSelectUser(),
+    message: makeSelectorFlashMessage()
 });
 
 export default withRouter(connect(mapStateToProps)(Login))

@@ -6,31 +6,24 @@ import { createSelector, createStructuredSelector } from 'reselect';
 class FlashMessage extends React.Component {
     constructor(props) {
         super(props);
-        this.onClick = this.onClick.bind(this);
     }
 
-    onClick(){
-        this.props.deleteFlashMessage(this.props.message.id);
+    huhu(){
+        //this.props.deleteFlashMessage(this.props.message.id);
+        dispatch(addFlashMessage({
+                        type: 'success',
+                        text: "huhuasdasfsdf sgdsgfsdg dhsdhfh st"
+                    }));
     }
-
-    // onClick() {
-    //     this.props.deleteFlashMessage(this.props.message.id);
-    // }  onClick={this.onClick}<div className={classnames('alert', {
-            //     'alert-success': type === 'success',
-            //     'alert-danger': type === 'error'
-            // })}>    
-             //   <button  className='close'><span>&times;</span></button>
 
     render() {
-        const id = this.props.message.id;
-        const type = this.props.message.type;
-        const text = this.props.message.text;
+        const {id,type,text} = this.props.message;
         return (
             <div className={classnames('alert',{
                 'alert-success': type === 'success',
                 'alert-danger': type === 'error'
             })}>
-                <button onClick={this.onClick} className='close'><span>&times;</span></button>
+                <button onClick={this.huhu} className='close'><span>&times;</span></button>
                 {text}
             </div>
         );
@@ -50,8 +43,8 @@ class FlashMessage extends React.Component {
 
 
 const makeSelectMessage = () => createSelector(
-    (state) => state.get('login'),
-    (state) => state.get('message')
+    (state) => {return state.get('login')},
+    (state) => {return state.get('message')}
 );
 
 const mapStateToProps = createStructuredSelector({
